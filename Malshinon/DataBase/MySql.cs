@@ -24,9 +24,37 @@ namespace Malshinon.DataBase
                 conn.Close();
 
             }
-            catch(MySqlException ex)
+            catch(Exception ex)
             {
                 Console.WriteLine($"Error conacting to DATA BASE: {ex.Message}");
+            }
+        }
+
+        public MySqlConnection GetConnect()
+        {
+            connection = new MySqlConnection(connictionString);
+            try 
+            {
+                connection.Open();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error conacting to database {ex.Message}");
+            }
+            return connection;
+        }
+
+        public void CloseConnect()
+        {
+            
+            try
+            {
+                connection.Close();
+                Console.WriteLine("safd");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"coonet close connection  {ex.Message}");
             }
         }
     }

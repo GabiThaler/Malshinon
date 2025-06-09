@@ -7,7 +7,12 @@ class program
 {
     static void Main(string[] arcs)
     {
+        
         MySqlData ms = new MySqlData();
-        ms.connect();
+        ms.CloseConnect();
+        //ms.connect();
+        //ms.GetConnect();
+        //ms.CloseConnect();
+        //ms.CloseConnect();
     }
 }
