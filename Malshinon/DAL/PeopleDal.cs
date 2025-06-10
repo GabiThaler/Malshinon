@@ -43,10 +43,10 @@ namespace Malshinon.DAL
 
                     }
                     );
-                    return AllPeople;
+                    
 
                 }
-
+                return AllPeople;
                 _msd.CloseConnect();
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ namespace Malshinon.DAL
                 var connect = _msd.GetConnect();
                 string qury = @"INSERT INTO people 
                             (frist_name,last_name,num_reports,secert_cod,type,um_mentions)
-                            VALUES(@frist_name,@last_name,@num_reports,@secert_cod,type,@um_mentions)";
+                            VALUES(@frist_name,@last_name,@num_reports,@secert_cod,@type,@um_mentions)";
                 MySqlCommand cmd = new MySqlCommand(qury, connect);
                 cmd.Parameters.AddWithValue("@frist_name", newPerson.FristName);
                 //cmd.Parameters.AddWithValue("@id", newPerson.Id);

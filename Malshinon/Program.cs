@@ -16,7 +16,7 @@ class program
         {
         FristName="Gabi",
         LastName ="Thaler",
-        SecretCode= "GT49w",
+        SecretCode="GT40986g49w",
         Type= "reporter",
         NumReports=1,
         NumMentions=0
