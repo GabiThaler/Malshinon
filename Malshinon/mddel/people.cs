@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Malshinon.mddel
 {
-    internal class people
+    internal class People
     {
         public int Id;
         public string FristName;

@@ -1,15 +1,29 @@
 ﻿using System;
-using  Malshinon.mddel;
-using  Malshinon.DataBase;
+using Malshinon.mddel;
+using Malshinon.DataBase;
+using Malshinon.DAL;
 
 namespace Malshinon;
 class program
 {
     static void Main(string[] arcs)
     {
-        
+
         MySqlData ms = new MySqlData();
-        ms.CloseConnect();
+        //ms.CloseConnect();
+        PeopleDal pd = new PeopleDal(ms);
+        People pe =new People
+        {
+        FristName="Gabi",
+        LastName ="Thaler",
+        SecretCode= "GT49w",
+        Type= "reporter",
+        NumReports=1,
+        NumMentions=0
+        };
+        pd.AddPeople(pe);
+        Console.WriteLine(pd.GetPeoples().Count);
+
         //ms.connect();
         //ms.GetConnect();
         //ms.CloseConnect();
