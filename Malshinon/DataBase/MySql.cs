@@ -35,7 +35,11 @@ namespace Malshinon.DataBase
             connection = new MySqlConnection(connictionString);
             try 
             {
-                connection.Open();
+                if (connection == null || connection.State==System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                
             }
             catch (Exception ex)
             {

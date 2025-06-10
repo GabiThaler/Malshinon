@@ -25,14 +25,14 @@ namespace Malshinon.DAL
             List<People> AllPeople = new List<People>();
             try
             {
-                
+
                 var connect = _msd.GetConnect();
                 string query = "SELECT * FROM people";
                 var cmd = new MySqlCommand(query, connect);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    AllPeople.Add(new People 
+                    AllPeople.Add(new People
                     {
                         SecretCode = reader.GetString("secert_cod"),
                         FristName = reader.GetString("frist_name"),
@@ -43,11 +43,12 @@ namespace Malshinon.DAL
 
                     }
                     );
-                    
+
 
                 }
-                return AllPeople;
                 _msd.CloseConnect();
+                return AllPeople;
+                
             }
             catch (Exception ex)
             {
@@ -74,13 +75,67 @@ namespace Malshinon.DAL
                 cmd.Parameters.AddWithValue("@type", newPerson.Type);
                 cmd.Parameters.AddWithValue("@um_mentions", newPerson.NumMentions);
                 cmd.ExecuteReader();
-                connect.Close();
+                _msd.CloseConnect();
             }
-            
-            catch(Exception ex)
+
+            catch (Exception ex)
             {
                 Console.WriteLine($"didnt mange to insert. {ex.Message}");
             }
+        }
+
+        public People FindBySecertCod(string secretCod)
+        {
+            People person = new People();
+            var connect = _msd.GetConnect();
+            try
+            {
+               
+                string query = $"SELECT * FROM people WHERE secert_cod ='{secretCod}'";
+                var cmd = new MySqlCommand(query, connect);
+                //cmd.ExecuteReader();
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        person = new People
+                        {
+                            FristName = reader.GetString("frist_name"),
+                            LastName = reader.GetString("last_name"),
+                            SecretCode = reader.GetString("secert_cod"),
+                            Type = reader.GetString("type"),
+                            NumReports = reader.GetInt32("num_reports"),
+                            NumMentions = reader.GetInt32("um_mentions")
+                        };
+                    }
+                    
+                }
+                else
+                {
+                    Console.WriteLine("enter frist and last name, type,num of reports and num of mintions!");
+                    _msd.CloseConnect();
+                    person = new People
+                    {
+                        FristName = Console.ReadLine(),
+                        LastName = Console.ReadLine(),
+                        Type = Console.ReadLine(),
+                        NumReports = Convert.ToInt32(Console.ReadLine()),
+                        NumMentions = Convert.ToInt32(Console.ReadLine())
+                    };
+                    AddPeople(person);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR... {ex.Message}");
+            }
+            finally
+            {
+                _msd.CloseConnect();
+            }
+            return person;
         }
     }
 }

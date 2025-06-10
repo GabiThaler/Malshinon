@@ -21,8 +21,9 @@ class program
         NumReports=1,
         NumMentions=0
         };
-        pd.AddPeople(pe);
-        Console.WriteLine(pd.GetPeoples().Count);
+        Console.WriteLine( pd.FindBySecertCod("sdqwas").NumMentions);
+        //pd.AddPeople(pe);
+        //Console.WriteLine(pd.GetPeoples().Count);
 
         //ms.connect();
         //ms.GetConnect();
