@@ -1,5 +1,7 @@
 ﻿using System;
-
+using Malshinon.mddel;
+using Malshinon.DataBase;
+using Malshinon.DAL;
 
 namespace Malshinon;
 class program
@@ -7,5 +9,25 @@ class program
     static void Main(string[] arcs)
     {
 
+        MySqlData ms = new MySqlData();
+        //ms.CloseConnect();
+        PeopleDal pd = new PeopleDal(ms);
+        People pe =new People
+        {
+        FristName="Gabi",
+        LastName ="Thaler",
+        SecretCode="GT40986g49w",
+        Type= "reporter",
+        NumReports=1,
+        NumMentions=0
+        };
+        Console.WriteLine( pd.FindBySecertCod("sdqwas").NumMentions);
+        //pd.AddPeople(pe);
+        //Console.WriteLine(pd.GetPeoples().Count);
+
+        //ms.connect();
+        //ms.GetConnect();
+        //ms.CloseConnect();
+        //ms.CloseConnect();
     }
 }
