@@ -43,6 +43,10 @@ namespace Malshinon.mddel
         {
 
             NumMentions += 1;
+            if(NumMentions>20)
+            {
+                Type = "potential_agent";
+            }
         }
 
 

@@ -11,9 +11,9 @@ namespace Malshinon.mddel
     {
         public int Id;
 
-        public int ReporterId;
+        public string ReporterId;
 
-        public int TargetId;
+        public string TargetId;
 
         public string Text;
 

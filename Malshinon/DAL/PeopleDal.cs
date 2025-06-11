@@ -139,8 +139,25 @@ namespace Malshinon.DAL
             }
             return person;
         }
-
         
+        public void UpdateToSql(People p)
+        {
+            string qury = $"UPDATE people SET num_reports='{p.NumReports}',um_mentions='{p.NumMentions},type ={p.Type} WHERE secert_cod='{p.SecretCode}' ";
+            try
+            {
+                var connect = _msd.GetConnect();
+                var cmd =new MySqlCommand(qury, connect);
+                cmd.ExecuteReader();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"ERROR... {ex.Message}");
+            }
+            finally
+            {
+                _msd.CloseConnect();
+            }
+        }
 
 
 
