@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace Malshinon.DAL
 {
-    internal class IntelDal
+    public class IntelDal
     {
         private MySqlData _msd;
         public IntelDal(MySqlData MSD)
@@ -22,14 +22,14 @@ namespace Malshinon.DAL
             {
                 var conn = _msd.GetConnect();
                 string query = @"INSERT INTO intelreports
-                        (ReporterId, TargatId, Text) 
-                        VALUES(@ReporterId, @TargatId, @Text)";
+                        (reporter_id,target_id,texr,TIMESTAMP) 
+                        VALUES(@reporter_id,@target_id,@text,@TIMESTAMP)";
                 var SqlCommend = new MySqlCommand(query, conn);
                 SqlCommend.Parameters.AddWithValue("@ReporterId", report.ReporterId);
                 SqlCommend.Parameters.AddWithValue("@TargatId", report.TargetId);
                 SqlCommend.Parameters.AddWithValue("@Text", report.Text);
+                SqlCommend.Parameters.AddWithValue("@TIMESTAMP", report.Timestamp);
                 var reader = SqlCommend.ExecuteReader();
-                
             }
             catch (Exception ex)
             {

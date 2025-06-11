@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Malshinon.DataBase
 {
-    internal class MySqlData
+    public class MySqlData
     {
         static string connictionString = "server=localhost;DataBase=project1;user=root;Password='';Port=3306;";
         private MySqlConnection connection;
@@ -54,7 +54,7 @@ namespace Malshinon.DataBase
             try
             {
                 connection.Close();
-                Console.WriteLine("safd");
+                Console.WriteLine("the connection was closed succfuli");
             }
             catch(Exception ex)
             {
