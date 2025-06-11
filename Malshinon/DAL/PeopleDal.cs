@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Malshinon.DataBase;
@@ -27,6 +28,7 @@ namespace Malshinon.DAL
             {
 
                 var connect = _msd.GetConnect();
+             
                 string query = "SELECT * FROM people";
                 var cmd = new MySqlCommand(query, connect);
                 var reader = cmd.ExecuteReader();
@@ -137,5 +139,19 @@ namespace Malshinon.DAL
             }
             return person;
         }
+
+        //public void UpDateReports(People reportor)
+        //{
+        //    try
+        //    {
+        //        var connect = _msd.GetConnect();
+        //        string qury = "UPDATE people SET num_reports =";
+        //    }
+            
+        //}
+
+
+
+
     }
 }
