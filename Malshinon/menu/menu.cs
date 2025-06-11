@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Malshinon.menapliton
+namespace Malshinon.menu
 {
-    internal class fucition
+    internal class menu
     {
     }
 }

@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Malshinon.mddel
 {
-    internal class People
+    public class People
     {
         public int Id;
         public string FristName;
@@ -18,7 +18,7 @@ namespace Malshinon.mddel
         public int NumMentions;
 
 
-        public static People CreatFromRedere(MySqlDataReader reder)
+        public People CreatFromRedere(MySqlDataReader reder)
         {
             reder.Read();
             People people = new People
@@ -34,17 +34,17 @@ namespace Malshinon.mddel
 
         }
 
-        //public people(int id,string fristName,string lastName,string secretCode,string type,int numReports=0,int numMentions=0)
-        //{
-        //    Id = id;
-        //    FristName = fristName;
-        //    LastName = lastName;
-        //    SecretCode = secretCode;
-        //    Type = type;
-        //    NumReports = numReports;
-        //    NumMentions = numMentions;
-        //}
+        public void IncReports()
+        {
+            NumReports += 1;
+        }
 
-        
+        public void IncMentions()
+        {
+
+            NumMentions += 1;
+        }
+
+
     }
 }

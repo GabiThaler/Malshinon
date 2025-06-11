@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 namespace Malshinon.DAL
 {
 
-    internal class PeopleDal
+    public class PeopleDal
     {
         private MySqlData _msd;
         public PeopleDal(MySqlData MSD)
@@ -140,16 +140,7 @@ namespace Malshinon.DAL
             return person;
         }
 
-        //public void UpDateReports(People reportor)
-        //{
-        //    try
-        //    {
-        //        var connect = _msd.GetConnect();
-        //        string qury = "UPDATE people SET num_reports =";
-        //    }
-            
-        //}
-
+        
 
 
 

@@ -7,7 +7,7 @@ using Google.Protobuf.WellKnownTypes;
 
 namespace Malshinon.mddel
 {
-    internal class IntelReports
+    public class IntelReports
     {
         public int Id;
 
