@@ -21,24 +21,65 @@ namespace Malshinon.menu
             Console.WriteLine("Plese enter youer secert cod");
             string CodName = Console.ReadLine();
             People reporte = pd.FindBySecertCod(CodName);
+            if (reporte == null)
+            {
+                reporte = creatPerson(CodName);
+                pd.AddPeople(reporte);
+                reporte = pd.FindBySecertCod(CodName);
+            }
             Console.WriteLine("please enter the secret cod of Target");
             string TcodName = Console.ReadLine();
             People Target = pd.FindBySecertCod(TcodName);
+            if (Target == null)
+            {
+                Target = creatPerson(TcodName);
+                pd.AddPeople(Target);
+                Target = pd.FindBySecertCod(TcodName);
+            }
             Console.WriteLine("Enter the REPORT");
             IntelReports intel = new IntelReports
             {
-                ReporterId = CodName,
-                TargetId = TcodName,
+                ReporterId = reporte.Id,
+                TargetId = Target.Id,
                 Text = Console.ReadLine(),
                 Timestamp = DateTime.Now
             };
             ID.InsertIntel(intel);
             reporte.IncReports();
             Target.IncMentions();
+            pd.UpdateToSql(reporte);
+            pd.UpdateToSql(Target);
+        }
+        public void PrintToConsokeAllPeople()
+        {
+            List<People> AllPeople = new List<People>();
+            AllPeople = pd.GetPeoples();
+            foreach (People p in AllPeople)
+            {
+                Console.WriteLine($"frist name {p.FristName} last name {p.LastName} secret cod {p.SecretCode} type {p.Type}");
 
+            }
+        }
+        public People creatPerson(string cod)
+        {
+            People person = new People();
+            Console.WriteLine("enter the firsr name:");
+            string FName = Console.ReadLine();
+            Console.WriteLine("enter the Last name:");
+            string LName = Console.ReadLine();
+            Console.WriteLine("enter youer type:");
+            string type = Console.ReadLine();
+            person = new People
+            {
+                FristName = FName,
+                LastName = LName,
+                Type = type,
+                SecretCode = cod
 
-
-
+            };
+            return person;
         }
     }
+
+
 }

@@ -22,7 +22,7 @@ namespace Malshinon.menu
                 {
                     case "1":
                         {
-
+                            hp.PrintToConsokeAllPeople();
                             break;
                         }
                     case "2":
@@ -42,9 +42,9 @@ namespace Malshinon.menu
 
         public void VewMenu()
         {
-            Console.WriteLine("Price 1 to get all people:");
-            Console.WriteLine("price 2 to Enter a report:");
-            Console.WriteLine("price 0 to exit:");
+            Console.WriteLine("click 1 to get all people:");
+            Console.WriteLine("click 2 to Enter a report:");
+            Console.WriteLine("click 0 to exit:");
 
         }
     }

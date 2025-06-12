@@ -36,6 +36,7 @@ namespace Malshinon.DAL
                 {
                     AllPeople.Add(new People
                     {
+                        Id=reader.GetInt32("id"),
                         SecretCode = reader.GetString("secert_cod"),
                         FristName = reader.GetString("frist_name"),
                         LastName = reader.GetString("last_name"),
@@ -48,13 +49,17 @@ namespace Malshinon.DAL
 
 
                 }
-                _msd.CloseConnect();
+                
                 return AllPeople;
                 
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"ERROR by geting all: {ex.Message}");
+            }
+            finally
+            {
+                _msd.CloseConnect();
             }
             return AllPeople;
         }
@@ -88,7 +93,7 @@ namespace Malshinon.DAL
 
         public People FindBySecertCod(string secretCod)
         {
-            People person = new People();
+            People person = null;
             var connect = _msd.GetConnect();
             try
             {
@@ -103,6 +108,7 @@ namespace Malshinon.DAL
                     {
                         person = new People
                         {
+                            Id = reader.GetInt32("id"),
                             FristName = reader.GetString("frist_name"),
                             LastName = reader.GetString("last_name"),
                             SecretCode = reader.GetString("secert_cod"),
@@ -113,20 +119,7 @@ namespace Malshinon.DAL
                     }
                     
                 }
-                else
-                {
-                    Console.WriteLine("enter frist and last name, type,num of reports and num of mintions!");
-                    _msd.CloseConnect();
-                    person = new People
-                    {
-                        FristName = Console.ReadLine(),
-                        LastName = Console.ReadLine(),
-                        Type = Console.ReadLine(),
-                        NumReports = Convert.ToInt32(Console.ReadLine()),
-                        NumMentions = Convert.ToInt32(Console.ReadLine())
-                    };
-                    AddPeople(person);
-                }
+                
                 
             }
             catch (Exception ex)
@@ -142,7 +135,7 @@ namespace Malshinon.DAL
         
         public void UpdateToSql(People p)
         {
-            string qury = $"UPDATE people SET num_reports='{p.NumReports}',um_mentions='{p.NumMentions},type ={p.Type} WHERE secert_cod='{p.SecretCode}' ";
+            string qury = $"UPDATE people SET num_reports='{p.NumReports}',um_mentions='{p.NumMentions}',type ='{p.Type}' WHERE secert_cod='{p.SecretCode}';";
             try
             {
                 var connect = _msd.GetConnect();
@@ -151,6 +144,7 @@ namespace Malshinon.DAL
             }
             catch(Exception ex)
             {
+                Console.WriteLine("jbkn");
                 Console.WriteLine($"ERROR... {ex.Message}");
             }
             finally
@@ -158,7 +152,18 @@ namespace Malshinon.DAL
                 _msd.CloseConnect();
             }
         }
-
+        // to do
+        public List<People> GetAllAgents()
+        {
+            List<People> Agents = new List<People>();
+            return Agents;
+        }
+        //to do
+        public List<People> GEtAllTargets ()
+        {
+            List<People> Targets = new List<People>();
+            return Targets;
+        }
 
 
     }
