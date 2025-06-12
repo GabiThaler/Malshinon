@@ -28,10 +28,15 @@ namespace Malshinon.menu
                         }
                     case "2":
                         {
-                            hp.InsertReport();
+                            hp.PrintToConsoleRepoters();
                             break;
                         }
                     case "3":
+                        {
+                            hp.InsertReport();
+                            break;
+                        }
+                    case "4":
                         {
                             Console.WriteLine("enter id of report:");
                             int id = Convert.ToInt32(Console.ReadLine());
@@ -51,8 +56,9 @@ namespace Malshinon.menu
         public void VewMenu()
         {
             Console.WriteLine("click 1 to get all people:");
-            Console.WriteLine("click 2 to Enter a report:");
-            Console.WriteLine("click 3 to get a report by id:");
+            Console.WriteLine("click 2 to get  all people by type:");
+            Console.WriteLine("click 3 to Enter a report:");
+            Console.WriteLine("click 4 to get a report by id:");
             Console.WriteLine("click 0 to exit:");
 
         }

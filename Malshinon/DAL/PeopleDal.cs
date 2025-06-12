@@ -153,18 +153,37 @@ namespace Malshinon.DAL
                 _msd.CloseConnect();
             }
         }
-        // to do
-        public List<People> GetAllAgents()
+        
+        public List<People> GetAllREporters(string TipeToSerch)
         {
+            People NP = new People();
             List<People> Agents = new List<People>();
+            try
+            {
+                var conn = _msd.GetConnect();
+                string qury = $"SELECT * FROM people WHERE type ='{TipeToSerch}'";
+                var cmd = new MySqlCommand(qury, conn);
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        NP = NP.CreatFromRedere(reader);
+                        Agents.Add(NP);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR by geting reporters {ex.Message}");
+            }
+            finally
+            {
+                _msd.CloseConnect();
+            }
             return Agents;
         }
-        //to do
-        public List<People> GEtAllTargets ()
-        {
-            List<People> Targets = new List<People>();
-            return Targets;
-        }
+       
 
 
     }

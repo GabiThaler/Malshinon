@@ -84,6 +84,19 @@ namespace Malshinon.menu
             IntelReports report = ID.getReportById(id);
             Console.WriteLine($"id:{report.Id}. reporter id:{report.ReporterId}. target id:{report.TargetId}. the report:{report.Text}. time of report:{report.Timestamp}");
         }
+
+        public void PrintToConsoleRepoters()
+        {
+            List<People> AllPeople = new List<People>();
+            Console.WriteLine("Enter type to serch:");
+            string tts = Console.ReadLine();
+            AllPeople = pd.GetAllREporters(tts);
+            foreach (People p in AllPeople)
+            {
+                Console.WriteLine($"frist name:{p.FristName}. last name:{p.LastName}. secret cod:{p.SecretCode}. type:{p.Type} num of reports:{p.NumReports}. num of mintions:{p.NumMentions}");
+
+            }
+        }
     }
 
 
