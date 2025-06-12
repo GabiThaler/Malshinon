@@ -54,7 +54,7 @@ namespace Malshinon.DataBase
             try
             {
                 connection.Close();
-                Console.WriteLine("the connection was closed succfuli");
+                //Console.WriteLine("the connection was closed succfuli");
             }
             catch(Exception ex)
             {
