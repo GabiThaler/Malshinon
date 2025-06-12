@@ -56,7 +56,7 @@ namespace Malshinon.menu
             AllPeople = pd.GetPeoples();
             foreach (People p in AllPeople)
             {
-                Console.WriteLine($"frist name {p.FristName} last name {p.LastName} secret cod {p.SecretCode} type {p.Type}");
+                Console.WriteLine($"frist name:{p.FristName}. last name:{p.LastName}. secret cod:{p.SecretCode}. type:{p.Type} num of reports:{p.NumReports}. num of mintions:{p.NumMentions}");
 
             }
         }
@@ -78,6 +78,11 @@ namespace Malshinon.menu
 
             };
             return person;
+        }
+        public void PrintIntel(int id)
+        {
+            IntelReports report = ID.getReportById(id);
+            Console.WriteLine($"id:{report.Id}. reporter id:{report.ReporterId}. target id:{report.TargetId}. the report:{report.Text}. time of report:{report.Timestamp}");
         }
     }
 

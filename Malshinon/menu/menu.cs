@@ -11,6 +11,7 @@ namespace Malshinon.menu
 
         public void Manager()
         {
+            
             HelpMenu hp = new HelpMenu();
             bool flag = true;
             while (flag)
@@ -30,6 +31,13 @@ namespace Malshinon.menu
                             hp.InsertReport();
                             break;
                         }
+                    case "3":
+                        {
+                            Console.WriteLine("enter id of report:");
+                            int id = Convert.ToInt32(Console.ReadLine());
+                            hp.PrintIntel(id);
+                            break; 
+                        }
                     case "0":
                         {
                             flag = false;
@@ -44,6 +52,7 @@ namespace Malshinon.menu
         {
             Console.WriteLine("click 1 to get all people:");
             Console.WriteLine("click 2 to Enter a report:");
+            Console.WriteLine("click 3 to get a report by id:");
             Console.WriteLine("click 0 to exit:");
 
         }

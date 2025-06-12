@@ -46,11 +46,9 @@ namespace Malshinon.DAL
 
                     }
                     );
-
-
                 }
                 
-                return AllPeople;
+                //return AllPeople;
                 
             }
             catch (Exception ex)
@@ -82,12 +80,15 @@ namespace Malshinon.DAL
                 cmd.Parameters.AddWithValue("@type", newPerson.Type);
                 cmd.Parameters.AddWithValue("@um_mentions", newPerson.NumMentions);
                 cmd.ExecuteReader();
-                _msd.CloseConnect();
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine($"didnt mange to insert. {ex.Message}");
+            }
+            finally
+            {
+                _msd.CloseConnect();
             }
         }
 

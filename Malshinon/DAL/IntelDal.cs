@@ -40,5 +40,26 @@ namespace Malshinon.DAL
                 _msd.CloseConnect();
             }
         }
+
+        public IntelReports getReportById(int id)
+        {
+            IntelReports TheIntel = new IntelReports();
+            try
+            {
+                var conn = _msd.GetConnect();
+                string qury = $"SELECT * FROM intelreports WHERE ID ='{id}'";
+                var cmd = new MySqlCommand(qury, conn);
+                var reder = cmd.ExecuteReader();
+                TheIntel = TheIntel.CreatFromRedere(reder);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"ERROR by geting intel {ex.Message}");
+            }finally
+            {
+                _msd.CloseConnect();
+            }
+            return TheIntel;
+        }
     }
 }
